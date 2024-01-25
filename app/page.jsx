@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import NosStat from "@/components/NosStat/NosStat";
 
 export default function Home() {
     useEffect(() => {
@@ -40,7 +41,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-              {/* <PureIncrement start={0} end={10} duration={1} className="purecounter" /> */}
+              <NosStat />
           </div>
         </div>
     </>

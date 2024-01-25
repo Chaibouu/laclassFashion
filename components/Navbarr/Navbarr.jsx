@@ -1,10 +1,26 @@
 "use client"
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { Icon } from '@iconify/react';
 import Image from "next/image";
 /* import { Avatar } from 'flowbite-react'; */
 
 const Navbar = () => {
+    const [fix,setFix]=useState(false)
+    useEffect(() => {
+        const setFixed = () => {
+            if (window.scrollY >= 80) {
+                setFix(true);
+            } else {
+                setFix(false);
+            }
+        };
+
+        window.addEventListener('scroll', setFixed);
+        return () => {
+            window.removeEventListener('scroll', setFixed);
+        };
+    }, []);
+
     const [menuOpen, setMenuOpen] = useState(false);
     let Links =[
         {name:"Accueil",link:"/"},
@@ -19,7 +35,8 @@ const Navbar = () => {
     };
   return (
     <>
-        <div className='flex h-16 relative items-center justify-around bg-[#2C2C2C] w-full '>
+       <div className={fix ? `bg-[#2C2C2C] fixed w-full z-10` : `fixed w-full z-10`}>
+       <div className="flex h-16 relative items-center justify-around w-full">
             <div className=''>
                 <Image
                     alt="logo"
@@ -46,6 +63,7 @@ const Navbar = () => {
                 </div>
             </div>
         </div>
+       </div>
     </>
   )
 }

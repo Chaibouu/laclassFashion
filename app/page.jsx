@@ -40,7 +40,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-              <PureIncrement start={0} end={10} duration={1} className="purecounter" />
+              {/* <PureIncrement start={0} end={10} duration={1} className="purecounter" /> */}
           </div>
         </div>
     </>

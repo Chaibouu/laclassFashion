@@ -8,7 +8,7 @@ const Navbar = () => {
     const [fix,setFix]=useState(false)
     useEffect(() => {
         const setFixed = () => {
-            if (window.scrollY >= 80) {
+            if (window.scrollY >= 90) {
                 setFix(true);
             } else {
                 setFix(false);
@@ -35,7 +35,7 @@ const Navbar = () => {
     };
   return (
     <>
-       <div className={fix ? `bg-[#2C2C2C] fixed w-full z-10` : `fixed w-full z-10`}>
+       <div className={fix ? `bg-[#2C2C2C] fixed w-full z-30` : `fixed w-full z-10`}>
        <div className="flex h-16 relative items-center justify-around w-full">
             <div className=''>
                 <Image
@@ -63,17 +63,6 @@ const Navbar = () => {
                 </div>
             </div>
         </div>
-        {/* comment */}
-        {/* comment */}
-        {/* comment */}
-        {/* comment */}
-        {/* comment */}
-        {/* comment */}
-        {/* comment */}
-        {/* comment */}
-        {/* comment */}
-        {/* comment */}
-        {/* comment */}
        </div>
     </>
   )

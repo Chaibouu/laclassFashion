@@ -2,9 +2,16 @@
 import React,{useEffect, useState} from "react";
 import { Icon } from '@iconify/react';
 import Image from "next/image";
+import Link from "next/link";
+import { createPortal } from "react-dom";
+import SignIn from "../SignIn/SignIn";
+
 /* import { Avatar } from 'flowbite-react'; */
 
 const Navbar = () => {
+
+    const [showModal, setShowModal] = useState(false)
+
     const [fix,setFix]=useState(false)
     useEffect(() => {
         const setFixed = () => {
@@ -35,18 +42,20 @@ const Navbar = () => {
     };
   return (
     <>
-       <div className={fix ? `bg-[#2C2C2C] fixed w-full z-30` : `fixed w-full z-10`}>
+       <div className={fix ? `bg-slate-900 fixed w-full z-30` : `fixed w-full z-30`}>
        <div className="flex h-16 relative items-center justify-around w-full">
             <div className=''>
-                <Image
-                    alt="logo"
-                    src="/Logo/laclassFashion.png"
-                    className="h-28 w-32"
-                    height={900}
-                    width={900} />
+               <Link href="/">
+                    <Image
+                            alt="logo"
+                            src="/Logo/laclassFashion.png"
+                            className="h-28 w-32"
+                            height={900}
+                            width={900} />
+               </Link>
             </div>
             <div className=''>
-                <ul className={`flex text-white bg-slate-900 opacity-90 lg:bg-transparent  flex-col absolute left-0 z-[10] lg:static lg:flex-row items-center lg:justify-around w-full transition-all duration-500 ease-in  ${menuOpen? 'top-16 opacity-100':'top-[-490px] lg:opacity-100 opacity-0'}`}  >
+                <ul className={`flex text-white bg-slate-900 opacity-95 lg:bg-transparent  flex-col absolute left-0 z-[10] lg:static lg:flex-row items-center lg:justify-around w-full transition-all duration-500 ease-in  ${menuOpen? 'top-16 opacity-100':'top-[-490px] lg:opacity-100 opacity-0'}`}  >
                     {
                         Links.map((link)=>(
                             <li key={link.name} className={`mx-4 lg:my-0 my-4 text-xl`} >
@@ -57,7 +66,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className='flex items-center'>
-                <button className="text-white text-xs w-14 border p-2 rounded-full hover:bg-white hover:text-[#2C2C2C]">SignIn</button>
+               <button className="text-white text-xs border me-10 md:me-0 p-2 rounded-full hover:bg-white hover:text-[#2C2C2C]" onClick={()=>setShowModal(true)}>Connexion</button>
+               {showModal && createPortal(<SignIn closeModal={()=>setShowModal(false)} />,document.body)}
                 <div onClick={()=>setMenuOpen(!menuOpen)} className="ms-4 text-white text-3xl absolute right-6 top-4 cursor-pointer lg:hidden ">
                     <Icon icon={menuOpen? "iconamoon:close-duotone":"iconamoon:menu-burger-horizontal"} />
                 </div>

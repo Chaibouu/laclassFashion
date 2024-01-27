@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const SignIn = ({closeModal}) => {
-    const [username, setUserName] = useState()
-    const [password, setPassword] = useState()
+    const [username, setUserName] = useState('')
+    const [password, setPassword] = useState('')
 
     return (
         <>
@@ -17,14 +17,6 @@ const SignIn = ({closeModal}) => {
                 <button >Se connecter</button>
             </div>
             </div>
-            {/* commentaire */}
-            {/* commentaire */}
-            {/* commentaire */}
-            {/* commentaire */}
-            {/* commentaire */}
-            {/* commentaire */}
-            {/* commentaire */}
-            {/* commentaire */}
         </>
     );
 };

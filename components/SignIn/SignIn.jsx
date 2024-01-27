@@ -17,6 +17,7 @@ const SignIn = ({closeModal}) => {
                 <button >Se connecter</button>
             </div>
             </div>
+            {/* commentaire */}
         </>
     );
 };

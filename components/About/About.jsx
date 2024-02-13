@@ -16,6 +16,7 @@ const About = () => {
                 omnis cupiditate neque consequuntur!</p>
                 <Image src="/Logo/laclassFashion.png" className='w-[300px]' height={900} width={900} alt="" />
             </div>
+            <div></div>
         </>
     );
 };

@@ -18,15 +18,6 @@ const About = () => {
             </div>
             <div></div>
             {/* comment */}
-            {/* comment */}
-            {/* comment */}
-            {/* comment */}
-            {/* comment */}
-            {/* comment */}
-            {/* comment */}
-            {/* comment */}
-            {/* comment */}
-            {/* comment */}
 
         </>
     );

@@ -26,6 +26,7 @@ const About = () => {
             {/* comment */}
             {/* comment */}
             {/* comment */}
+            {/* comment */}
 
         </>
     );

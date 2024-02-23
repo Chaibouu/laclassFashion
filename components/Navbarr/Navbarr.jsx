@@ -66,7 +66,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className='flex items-center'>
-               <button className="text-white text-xs border me-10 md:me-0 p-2 rounded-full hover:bg-white hover:text-[#2C2C2C]" onClick={()=>setShowModal(true)}>Connexion</button>
+               <button className="text-black bg-white text-xs border me-10 md:me-0 p-2 rounded-md hover:bg-white hover:text-[#2C2C2C]" onClick={()=>setShowModal(true)}>Connexion</button>
+               <button className="text-white text-xs border ms-4 me-10 md:me-0 p-2 rounded-md hover:bg-white hover:text-[#2C2C2C]" onClick={()=>setShowModal(true)}>Créer un compte</button>
                {showModal && createPortal(<SignIn closeModal={()=>setShowModal(false)} />,document.body)}
                 <div onClick={()=>setMenuOpen(!menuOpen)} className="ms-4 text-white text-3xl absolute right-6 top-4 cursor-pointer lg:hidden ">
                     <Icon icon={menuOpen? "iconamoon:close-duotone":"iconamoon:menu-burger-horizontal"} />

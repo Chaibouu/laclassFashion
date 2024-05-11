@@ -62,7 +62,7 @@ export default function Home() {
           {/* commentaire */}
           {/* commentaire */}
           {/* commentaire */}
-        </div>
+          {/* commentaire */}
         </div>
     </>
   );

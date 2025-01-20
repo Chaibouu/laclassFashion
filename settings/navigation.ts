@@ -13,15 +13,39 @@ export interface NavigationItem {
 
 export const adminNavigation: NavigationItem[] = [
   {
-    title: "Nouvel acte",
+    title: "Dashboard",
     icon: "material-symbols:dashboard",
-    path: "/newActe",
+    path: "/admin",
+    allowedRoles: ["USER"],
+  },
+  {
+    title: "Test",
+    icon: "material-symbols:dashboard",
+    path: "/test",
     allowedRoles: ["ADMIN", "USER"],
   },
   {
-    title: "Toute les actes",
-    icon: "material-symbols:dashboard",
-    path: "/actes",
-    allowedRoles: ["ADMIN", "USER"],
-  }
+    title: "Paramètres",
+    icon: "material-symbols:settings",
+    path: "/dashboard/settings",
+    allowedRoles: ["USER"],
+  },
+  {
+    title: "Pages",
+    icon: "eos-icons:admin",
+    path: "#",
+    children: [
+      {
+        title: "Client",
+        path: "/dashboard/client",
+        allowedRoles: ["USER"],
+      },
+      {
+        title: "Server",
+        path: "/dashboard/server",
+        allowedRoles: ["USER"],
+      },
+    ],
+    allowedRoles: ["USER"],
+  },
 ];

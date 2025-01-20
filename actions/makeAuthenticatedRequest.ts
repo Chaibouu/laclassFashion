@@ -22,8 +22,6 @@ export async function makeAuthenticatedRequest(
         { error: "Token de rafraîchissement manquant" },
         { status: 401 }
       );
-    } else {
-      console.log('refresh token ok!')
     }
 
     // Vérifier si le corps de la requête est du FormData
@@ -63,9 +61,6 @@ export async function makeAuthenticatedRequest(
       } catch (error) {
         console.error("Erreur lors de l'utilisation du token d'accès:", error);
       }
-    } else {
-      console.log('probleme avec access  token ')
-
     }
 
     // Si l'`accessToken` est invalide ou absent, tenter de le rafraîchir
@@ -96,9 +91,6 @@ export async function makeAuthenticatedRequest(
 
       if (!response.ok) {
         throw new Error(`Erreur lors de la requête : ${response.statusText}`);
-      } else {
-      console.log('la requete est passé')
-
       }
 
       return await response.json(); // Retourner la réponse JSON si la requête réussit

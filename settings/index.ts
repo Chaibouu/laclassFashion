@@ -1,8 +1,7 @@
 const appConfig = {
-  appName: "Acte de cession",
-  websiteTitle: "Acte de cession",
-  websiteDescription:
-    "Acte de cession simple authentication service and admin panel",
+  appName: "Sahel Coders Starter",
+  websiteTitle: "Website Starter",
+  websiteDescription:"Sahel Coders simple authentication service and admin panel",
   logoUrl: "/logo.jpg",
   sidebarClearlogoUrl: "/sahel_coders_logo.png",
   adminSidebarColor: "#1C2434",
@@ -15,14 +14,14 @@ const appConfig = {
       pass: process.env.MAIL_AUTH_PASSWORD,
     },
   },
-  publicRoutes: [],
-  defaultLoginRedirect: "/actes",
+  publicRoutes: ["/"],
+  defaultLoginRedirect: "/test",
 
   // Ajout d'une option pour autoriser ou non les connexions multiples
-  allowMultipleSessions: true, // ou false pour invalider les anciennes sessions
+  allowMultipleSessions: false, // ou false pour invalider les anciennes sessions
   rateLimit: {
     windowMs: 10 * 1000, // Durée de la fenêtre en ms (10 seconds)
-    max: 10, // Nombre maximum de requêtes par IP dans la fenêtre
+    max: 5, // Nombre maximum de requêtes par IP dans la fenêtre
   },
   // Configuration du Backoff progressif
   backoff: {

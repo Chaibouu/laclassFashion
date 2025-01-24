@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss"
 import appConfig from "./settings";
+import Configs from "./configs/Configs";
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config = {
@@ -56,6 +57,8 @@ const config = {
         },
         body: "#64748B",
         black: `${appConfig.adminSidebarColor}`,
+        PrimaryCol: `${Configs.PrimaryColor}`,
+        SecondariColor: `${Configs.SecondariColor}`,
         "black-2": "#010101",
         whiten: "#F1F5F9",
         bodydark: "#AEB7C0",

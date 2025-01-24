@@ -1,7 +1,7 @@
 const appConfig = {
   appName: "La class Fashion",
   websiteTitle: "La class Fashion",
-  websiteDescription:"Sahel Coders simple authentication service and admin panel",
+  websiteDescription:"Exprimez-vous avec distinction grâce à LaClasse Fashion",
   logoUrl: "/Logo/laclassFashion.png",
   sidebarClearlogoUrl: "/Logo/laclassFashion.png",
   adminSidebarColor: "#1C2434",

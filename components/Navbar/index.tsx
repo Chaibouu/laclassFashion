@@ -12,7 +12,6 @@ import { LoginButton } from "../auth/login-button";
 // import DarkModeSwitcher from "./DarkModeSwitcher";
 import DarkModeSwitcher from "../Header/DarkModeSwitcher";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import Configs from "@/configs/Configs";
 import appConfig from "@/settings";
 import { useSession } from "@/context/SessionContext";
 
@@ -51,7 +50,7 @@ const Navbar = ({Links}:NavbarProps) => {
   
   return (
     
-    <div className={fix ? `w-full fixed top-0 left-0 z-20 bg-PrimaryCol border-b-2 border-SecondaryCol mb-4 dark:bg-SecondaryCol dark:border-PrimaryCol` : `w-full bg-PrimaryCol fixed top-0 left-0 z-20 mb-4 dark:bg-SecondaryCol`}>
+    <div className={fix ? `w-full fixed top-0 left-0 z-20 bg-PrimaryCol border-b-2 border-SecondaryCol mb-4 dark:bg-SecondaryCol dark:border-PrimaryCol` : `w-full fixed top-0 left-0 z-20 mb-4 dark:bg-SecondaryCol`}>
       <div className="flex items-center justify-between m-2">
       
           <div className="md:ms-12">

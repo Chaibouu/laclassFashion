@@ -12,8 +12,8 @@ const NosStat = () => {
 
   return (
     <>
-      <div className="h-[200px]">
-        <div className="flex items-center justify-around flex-col md:flex-row text-4xl pt-8">
+      <div className="h-[200px] my-4 bg-blue-600">
+        <div className="flex items-center justify-around flex-col md:flex-row text-4xl pt-8 ">
           <div className="text-center m-8" data-aos="fade-up" data-aos-delay="400">
               <div className="">
                 +<PureIncrement start={0} end={254} duration={10} className="purecounter" />

@@ -6,7 +6,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { Links } from "@/settings/navigation";
 import Navbar from "@/components/Navbar";
-// import { Navbar } from "@/components/_components/navbar";
+import NosStat from "@/components/main/NosStat/NosStat";
+
 
 
 export default function Home() {
@@ -44,10 +45,10 @@ export default function Home() {
                 </div>
             </div>
           </div>
-          {/* <div className="container ">
+          <div className="container ">
               <NosStat />
           </div>
-          <div className="container ">
+          {/* <div className="container ">
               <About />
           </div> */}
           {/* commentaire */}

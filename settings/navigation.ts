@@ -1,3 +1,34 @@
+export interface LinkItem {
+  name: string;
+  link: string;
+}
+
+export const Links : LinkItem[] = [
+  {
+    name:"Accueil",
+    link:"#accueil"
+  },
+  {
+    name:"À propos",
+    link:"#propos"
+  },
+  {
+    name:"Service",
+    link:"#service"
+  },
+  {
+    name:"Boutique",
+    link:"#boutique"
+  },
+  {
+    name:"Réalisations",
+    link:"#realisation"
+  },
+  {
+    name:"Contact",
+    link:"#contact"
+  },
+]
 export interface ChildrenItem {
   title: string;
   path: string;

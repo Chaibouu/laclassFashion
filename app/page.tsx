@@ -48,6 +48,8 @@ import Image from "next/image";
 import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Links } from "@/settings/navigation";
+import Navbar from "@/components/Navbar";
 // import { Navbar } from "@/components/_components/navbar";
 
 
@@ -60,7 +62,7 @@ export default function Home() {
     
   return (
     <>
-        {/* <Navbar/> */}
+        <Navbar Links={Links}/>
         <div className="flex flex-col justify-center items-center">
           <div className="w-full relative bg-[url('/Header/texture.jpg')] bg-cover bg-no-repeat h-[90vh]">
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-85"></div>

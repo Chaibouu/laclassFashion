@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",
+    "@types/aos": "^3.0.7",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "22.5.5",
     "@types/nodemailer": "^6.4.14",

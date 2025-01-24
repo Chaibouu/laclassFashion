@@ -57,7 +57,7 @@ const Navbar = ({Links}:NavbarProps) => {
           <div className="md:ms-12">
             <Image
               src={appConfig.logoUrl}
-              className="w-16 h-16"
+              className="w-32 h-16"
               alt={appConfig.websiteTitle}
               height={200}
               width={200}
@@ -87,10 +87,10 @@ const Navbar = ({Links}:NavbarProps) => {
 
               {Links && Links.length > 0 ? (
                 Links.map((link: LinkItem) => (
-                  <li key={link.name} className="lg:ml-4 text-[18px] lg:my-0 my-7 text-center">
+                  <li key={link.name} className="lg:ml-4 text-[18px] lg:my-0 my-7 text-center ">
                     <Link
                       href={link.link}
-                      className="relative text-gray-800 hover:text-[#0a6b70] duration-500 w-full flex items-center justify-center min-w-[78px] dark:text-white
+                      className="relative text-white hover:text-[#0a6b70] duration-500 w-full flex items-center justify-center min-w-[78px] dark:text-white
                       after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-0 after:h-[2px] after:bg-[#0a6b70]
                       hover:after:w-full hover:after:left-0 after:transition-all after:duration-500 text-center"
                     >

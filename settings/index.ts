@@ -1,9 +1,9 @@
 const appConfig = {
-  appName: "Sahel Coders Starter",
-  websiteTitle: "Website Starter",
+  appName: "La class Fashion",
+  websiteTitle: "La class Fashion",
   websiteDescription:"Sahel Coders simple authentication service and admin panel",
-  logoUrl: "/logo.jpg",
-  sidebarClearlogoUrl: "/sahel_coders_logo.png",
+  logoUrl: "/Logo/laclassFashion.png",
+  sidebarClearlogoUrl: "/Logo/laclassFashion.png",
   adminSidebarColor: "#1C2434",
   mailOptions: {
     host: process.env.MAIL_HOST,

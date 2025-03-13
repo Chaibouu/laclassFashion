@@ -230,6 +230,7 @@ export const verifyVerificationToken = async (encryptedToken: string) => {
 // Créer un JWT avec chiffrement AES-256-GCM
 export const createEncryptedJWT = (payload: object, expiresIn: string) => {
   // Créer le JWT signé avec la clé privée RSA
+  // @ts-ignore: Unreachable code error
   const token = sign(payload, privateKey, {
     algorithm: ALGORITHM,
     expiresIn,

@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { authorize } from "@/settings/authorization";
-import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
-import { storage } from "@/firebase/firebase";
 
 // Récupérer un produit par ID
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {

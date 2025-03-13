@@ -4,23 +4,23 @@ import { authorize } from "@/settings/authorization";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const authError = await authorize(req, "/api/categoriplant/:id");
+  const authError = await authorize(req, "/api/category/:id");
   if (authError) return authError;
 
   const id = req.nextUrl.pathname.split("/").pop();
 
   if (!id) {
     return NextResponse.json(
-      { error: "L'identifiant de la categorie de plante est requis" },
+      { error: "L'identifiant de la categorie est requis" },
       { status: 400 }
     );
   }
 
   try {
-    const categoriplant = await db.category.findFirst({
+    const category = await db.category.findFirst({
       where: {
         id,
-        isDeleted: false, // Ne rechercher que parmi les catégorie de plante non supprimés
+        isDeleted: false, // Ne rechercher que parmi les catégorie non supprimés
       },
       select: {
         id: true,
@@ -28,29 +28,29 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    if (!categoriplant) {
+    if (!category) {
       return NextResponse.json(
-        { error: "categorie de plante non trouvé ou supprimé" },
+        { error: "categorie non trouvé ou supprimé" },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({ categoriplant }, { status: 200 });
+    return NextResponse.json({ category }, { status: 200 });
   } catch (error) {
-    console.error("Erreur lors de la récupération des categories de plante :", error);
+    console.error("Erreur lors de la récupération des categories :", error);
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }
 
 export async function PUT(req: NextRequest) {
-  const authError = await authorize(req, "/api/categoriplant/:id");
+  const authError = await authorize(req, "/api/category/:id");
   if (authError) return authError;
 
   const id = req.nextUrl.pathname.split("/").pop();
 
   if (!id) {
     return NextResponse.json(
-      { error: "L'identifiant de la categorie de plante est requis" },
+      { error: "L'identifiant de la categorie est requis" },
       { status: 400 }
     );
   }
@@ -67,21 +67,21 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    const CategoriPlantExists = await db.category.findFirst({
+    const CategoryExists = await db.category.findFirst({
       where: {
         id,
         isDeleted: false,
       },
     });
 
-    if (!CategoriPlantExists) {
+    if (!CategoryExists) {
       return NextResponse.json(
-        { error: "categorie de plante non trouvé ou supprimé" },
+        { error: "categorie non trouvé ou supprimé" },
         { status: 404 }
       );
     }
 
-    const categoriplant = await db.category.update({
+    const category = await db.category.update({
       where: { id },
       data: {
         name,
@@ -89,54 +89,54 @@ export async function PUT(req: NextRequest) {
     });
 
     return NextResponse.json(
-      { message: "categorie de plante mis à jour avec succès", categoriplant },
+      { message: "categorie mis à jour avec succès", category },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Erreur lors de la mise à jour de la categorie de plante :", error);
+    console.error("Erreur lors de la mise à jour de la categorie :", error);
     return NextResponse.json({ error: "Erreur serveurrrrr" }, { status: 500 });
   }
 }
 
 export async function DELETE(req: NextRequest) {
-  const authError = await authorize(req, "/api/categoriplant/:id");
+  const authError = await authorize(req, "/api/category/:id");
   if (authError) return authError;
 
   const id = req.nextUrl.pathname.split("/").pop();
 
   if (!id) {
     return NextResponse.json(
-      { error: "L'identifiant de la categorie de plante est requis" },
+      { error: "L'identifiant de la categorie est requis" },
       { status: 400 }
     );
   }
 
   try {
-    const CategoriPlantExists = await db.category.findFirst({
+    const CategoryExists = await db.category.findFirst({
       where: {
         id,
         isDeleted: false,
       },
     });
 
-    if (!CategoriPlantExists) {
+    if (!CategoryExists) {
       return NextResponse.json(
-        { error: "categorie de plante non trouvé ou déjà supprimé" },
+        { error: "categorie non trouvé ou déjà supprimé" },
         { status: 404 }
       );
     }
 
-    const categoriplant = await db.category.update({
+    const category = await db.category.update({
       where: { id },
       data: { isDeleted: true },
     });
 
     return NextResponse.json(
-      { message: "categorie de plante supprimé avec succès", categoriplant },
+      { message: "categorie supprimé avec succès", category },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Erreur lors de la suppression logique de la categorie de plante :", error);
+    console.error("Erreur lors de la suppression logique de la categorie :", error);
     return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
   }
 }

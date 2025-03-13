@@ -7,6 +7,9 @@ import "aos/dist/aos.css";
 import { Links } from "@/settings/navigation";
 import Navbar from "@/components/Navbar";
 import NosStat from "@/components/main/NosStat/NosStat";
+import About from "@/components/main/About/About";
+import Services from "@/components/main/Service";
+import Boutique from "@/components/main/Boutique";
 
 
 
@@ -45,18 +48,19 @@ export default function Home() {
                 </div>
             </div>
           </div>
-          <div className="container ">
+          <div className="container my-8">
               <NosStat />
           </div>
-          {/* <div className="container ">
+          <div className="container my-8 ">
               <About />
-          </div> */}
-          {/* commentaire */}
-          {/* commentaire */}
-          {/* commentaire */}
-          {/* commentaire */}
-          {/* commentaire */}
-          {/* commentaire */}
+          </div>
+          <div className="container my-8 ">
+              <Services />
+          </div>
+          <div className="container my-8 ">
+              <Boutique />
+          </div>
+
         </div>
     </>
   );

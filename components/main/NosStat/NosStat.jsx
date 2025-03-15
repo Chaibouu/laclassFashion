@@ -12,7 +12,7 @@ const NosStat = () => {
 
   return (
     <>
-      <div className="h-[200px] my-4 bg-blue-600">
+      <div className="h-[200px] w-[400px] bg-red-600 my-4">
         <div className="flex items-center justify-around flex-col md:flex-row text-4xl pt-8 ">
           <div className="text-center m-8" data-aos="fade-up" data-aos-delay="400">
               <div className="">

@@ -24,7 +24,7 @@ export default function Home() {
     <>
         <Navbar Links={Links}/>
         <div className="flex flex-col justify-center items-center">
-          <div className="w-full relative bg-[url('/Header/texture.jpg')] bg-cover bg-no-repeat h-[90vh]">
+          <div className="w-full relative bg-[url('/Header/texture.jpg')] bg-cover bg-no-repeat h-[100vh]">
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-85"></div>
             <div className="relative z-[10] h-full flex xl:ms-[150px] items-center lg:justify-start justify-center">
                 <Image
@@ -48,7 +48,7 @@ export default function Home() {
                 </div>
             </div>
           </div>
-          <div className="container my-8">
+          <div className="">
               <NosStat />
           </div>
           <div className="container my-8 ">

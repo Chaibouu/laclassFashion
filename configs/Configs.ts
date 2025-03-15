@@ -200,7 +200,7 @@ const Configs ={
     appName: 'primary-1',
     title: 'primary-1',
     description: 'primary-1',
-    PrimaryColor: '#33A752',
+    PrimaryColor: '#18334C',
     SecondariColor: '#DF7413',
     btnColor   :' #675DD8',
     VertClair  :' #A8D5BA',

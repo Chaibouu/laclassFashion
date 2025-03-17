@@ -97,6 +97,7 @@ export async function POST(req: NextRequest) {
     const formDataa = new FormData();
     formDataa.append("file", image);
     formDataa.append("upload_preset", "site-cama");
+    formDataa.append("folder", "laclassfashion"); // Définir le dossier
     const res = await fetch("https://api.cloudinary.com/v1_1/duxfrfqd0/image/upload", {
       method: "POST",
       body: formDataa,

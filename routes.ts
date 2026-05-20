@@ -13,6 +13,7 @@ export const publicRoutes = [...appConfig.publicRoutes.map((route) => route)];
  * @type {string[]}
  */
 export const authRoutes = [
+  "/devis",
   "/auth/login",
   "/auth/logout",
   "/auth/refresh",

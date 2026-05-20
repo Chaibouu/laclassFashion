@@ -1,57 +1,106 @@
 'use server'
-import { makeAuthenticatedRequest } from "./makeAuthenticatedRequest";
 
+// Actions simplifiées pour les produits - site vitrine sans authentification
 export const fetchProduit = async () => {
-    // la fonction makeAuthenticatedRequest va vous permettre de faire vos requête sans vous soucier de l'autorisation, il faut juste lui passer les paramètres de la requête et elle vous renvoie directement la 'data' souhaité
-    const test = await makeAuthenticatedRequest(
+  try {
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_APP_URL}/api/produit`,
-      "GET"
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
     );
-  
-    // dans ce cas 'test' représente toutes les missions, vous pouvez ensuite envoyer la 'data' comme vous le souhaitez via le 'return'
-    return JSON.parse(JSON.stringify(test.produit));
-  };
 
+    if (!response.ok) {
+      throw new Error("Erreur lors de la récupération des produits");
+    }
 
+    const data = await response.json();
+    return JSON.parse(JSON.stringify(data.produit || []));
+  } catch (error) {
+    console.error("Erreur dans fetchProduit:", error);
+    return [];
+  }
+};
 
-  export const postProduit = async (body:any) => {
-    // la fonction makeAuthenticatedRequest va vous permettre de faire vos requête sans vous soucier de l'autorisation, il faut juste lui passer les paramètres de la requête et elle vous renvoie directement la 'data' souhaité
-    const test = await makeAuthenticatedRequest(
+export const postProduit = async (body: any) => {
+  try {
+    const formData = new FormData();
+    Object.keys(body).forEach((key) => {
+      if (body[key] !== undefined) {
+        formData.append(key, body[key]);
+      }
+    });
+
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_APP_URL}/api/produit`,
-      "POST",
-       body
+      {
+        method: "POST",
+        body: formData,
+      }
     );
-  
-    // dans ce cas 'test' représente toutes les missions, vous pouvez ensuite envoyer la 'data' comme vous le souhaitez via le 'return'
-    return JSON.parse(JSON.stringify(test));
-  };
 
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Erreur lors de la création du produit");
+    }
 
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur dans postProduit:", error);
+    throw error;
+  }
+};
 
-  export const putProduit = async ({ body, id }: { body: any; id: string }) => {
-    console.log(body);
-    
-    // la fonction makeAuthenticatedRequest va vous permettre de faire vos requête sans vous soucier de l'autorisation, il faut juste lui passer les paramètres de la requête et elle vous renvoie directement la 'data' souhaité
-    const test = await makeAuthenticatedRequest(
+export const putProduit = async ({ body, id }: { body: any; id: string }) => {
+  try {
+    const formData = new FormData();
+    formData.append("id", id);
+    Object.keys(body).forEach((key) => {
+      if (body[key] !== undefined && body[key] !== null) {
+        formData.append(key, body[key]);
+      }
+    });
+
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_APP_URL}/api/produit/${id}`,
-      "PUT",
-       body,
-       undefined,
-       "multipart/form-data"
+      {
+        method: "PUT",
+        body: formData,
+      }
     );
-    // dans ce cas 'test' représente toutes les missions, vous pouvez ensuite envoyer la 'data' comme vous le souhaitez via le 'return'
-    return JSON.parse(JSON.stringify(test));
-  };
 
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Erreur lors de la mise à jour du produit");
+    }
 
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur dans putProduit:", error);
+    throw error;
+  }
+};
 
-  export const deleteProduit = async (id:string) => {
-    // la fonction makeAuthenticatedRequest va vous permettre de faire vos requête sans vous soucier de l'autorisation, il faut juste lui passer les paramètres de la requête et elle vous renvoie directement la 'data' souhaité
-    const test = await makeAuthenticatedRequest(
+export const deleteProduit = async (id: string) => {
+  try {
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_APP_URL}/api/produit/${id}`,
-      "DELETE",
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
     );
-  
-    // dans ce cas 'test' représente toutes les missions, vous pouvez ensuite envoyer la 'data' comme vous le souhaitez via le 'return'
-    return JSON.parse(JSON.stringify(test));
-  };
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Erreur lors de la suppression du produit");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur dans deleteProduit:", error);
+    throw error;
+  }
+};
+

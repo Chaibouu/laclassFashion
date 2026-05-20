@@ -1,20 +1,39 @@
 "use client";
-import { useEffect } from "react";
-import useLocalStorage from "./useLocalStorage";
 
-const useColorMode = () => {
-  const [colorMode, setColorMode] = useLocalStorage("color-theme", "light");
+import { useState, useEffect } from "react";
+
+type ColorMode = "light" | "dark";
+
+const useColorMode = (): [ColorMode, (mode: ColorMode) => void] => {
+  const [colorMode, setColorModeState] = useState<ColorMode>("light");
 
   useEffect(() => {
-    const className = "dark";
-    const bodyClass = window.document.body.classList;
+    // Vérifier le mode préféré au chargement
+    const stored = localStorage.getItem("colorMode") as ColorMode | null;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    
+    const initialMode = stored || (prefersDark ? "dark" : "light");
+    setColorModeState(initialMode);
+    applyMode(initialMode);
+  }, []);
 
-    colorMode === "dark"
-      ? bodyClass.add(className)
-      : bodyClass.remove(className);
-  }, [colorMode]);
+  const applyMode = (mode: ColorMode) => {
+    const root = document.documentElement;
+    if (mode === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+  };
+
+  const setColorMode = (mode: ColorMode) => {
+    setColorModeState(mode);
+    localStorage.setItem("colorMode", mode);
+    applyMode(mode);
+  };
 
   return [colorMode, setColorMode];
 };
 
 export default useColorMode;
+

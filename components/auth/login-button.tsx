@@ -1,47 +1,34 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { LoginForm } from "@/components/auth/login-form";
+import Link from "next/link";
 
 interface LoginButtonProps {
-  children: React.ReactNode;
-  mode?: "modal" | "redirect",
+  children?: React.ReactNode;
+  mode?: "modal" | "redirect";
   asChild?: boolean;
-};
+}
 
-export const LoginButton = ({
-  children,
+// Composant simple pour le bouton de connexion - site vitrine
+export const LoginButton = ({ 
+  children, 
   mode = "redirect",
-  asChild
+  asChild 
 }: LoginButtonProps) => {
-  const router = useRouter();
-
-  const onClick = () => {
-    router.push("/auth/login");
-  };
+  // Pour un site vitrine, on peut simplement rediriger vers la page de login
+  // ou afficher le contenu tel quel
+  if (asChild && children) {
+    return <>{children}</>;
+  }
 
   if (mode === "modal") {
-    return (
-      <Dialog>
-        <DialogTrigger asChild={asChild}>
-          {children}
-        </DialogTrigger>
-        <DialogContent className="p-0 w-auto bg-transparent border-none">
-          <LoginForm />
-        </DialogContent>
-      </Dialog>
-    )
+    // Pour un site vitrine, on peut juste afficher le bouton
+    return <>{children}</>;
   }
 
   return (
-    <span onClick={onClick} className="cursor-pointer">
+    <Link href="/auth/login">
       {children}
-    </span>
+    </Link>
   );
 };
+

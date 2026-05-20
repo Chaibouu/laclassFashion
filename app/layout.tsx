@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import appConfig from "@/settings";
 import { Toaster } from "@/components/ui/sonner";
-import { SessionProvider } from "@/context/SessionContext";
-import { getUser } from "@/actions/getUser";
+import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,13 +16,29 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const {user} = await getUser();
   return (
-    <SessionProvider user={user?.user}>
-      <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const stored = localStorage.getItem('colorMode');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const mode = stored || (prefersDark ? 'dark' : 'light');
+                if (mode === 'dark') {
+                  document.documentElement.classList.add('dark');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className={inter.className}>
         <Toaster />
-        <body className={inter.className}>{children}</body>
-      </html>
-   </SessionProvider>
+        {children}
+        <Footer />
+      </body>
+    </html>
   );
 }

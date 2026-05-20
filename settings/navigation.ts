@@ -3,30 +3,35 @@ export interface LinkItem {
   link: string;
 }
 
-export const Links : LinkItem[] = [
+// Update your navigation links to include the contact section
+export const Links = [
   {
-    name:"Accueil",
-    link:"#accueil"
+    name: "Accueil",
+    link: "/",
   },
   {
-    name:"À propos",
-    link:"#propos"
+    name: "À Propos",
+    link: "/#about",
   },
   {
-    name:"Service",
-    link:"#service"
+    name: "Services",
+    link: "/#services",
   },
   {
-    name:"Boutique",
-    link:"#boutique"
+    name: "Réalisations",
+    link: "/#realisations",
   },
   {
-    name:"Réalisations",
-    link:"#realisation"
+    name: "Boutique",
+    link: "/#boutique",
   },
   {
-    name:"Contact",
-    link:"#contact"
+    name: "Contact",
+    link: "/#contact",
+  },
+  {
+    name: "Devis",
+    link: "/devis",
   },
 ]
 export interface ChildrenItem {

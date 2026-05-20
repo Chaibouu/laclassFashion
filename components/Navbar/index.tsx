@@ -8,12 +8,9 @@ import DropdownUser from "../Header/DropdownUser";
 import { LinkItem } from "@/settings/navigation";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
-import { LoginButton } from "../auth/login-button";
 // import DarkModeSwitcher from "./DarkModeSwitcher";
 import DarkModeSwitcher from "../Header/DarkModeSwitcher";
-import { useCurrentUser } from "@/hooks/use-current-user";
 import appConfig from "@/settings";
-import { useSession } from "@/context/SessionContext";
 
 interface NavbarProps {
   // user: User;
@@ -21,10 +18,9 @@ interface NavbarProps {
 }
 
 const Navbar = ({Links}:NavbarProps) => {
-
-  const user = useSession();
+  // Authentification désactivée - toujours considérer l'utilisateur comme non authentifié
+  const user = { isAuthenticated: false };
   const [menuOpen, setMenuOpen] = useState(false);
-  const [userr, setUser] = useState();
   const pathname = usePathname();
 
   const [fix,setFix]=useState(false)
@@ -77,7 +73,7 @@ const Navbar = ({Links}:NavbarProps) => {
 
 
           <div className="">
-            <ul className={`me-2 lg:flex lg:items-center lg:bg-transparent bg-white lg:pb-0 pb-12 absolute lg:static lg:z-auto z-[-1] w-full lg:w-[70%] xl:w-[60%] 2xl:w-[50%] lg:pl-0 pl-9 transition-all duration-500 ease-in ${menuOpen? 'top-0 left-0 pt-10 opacity-100 w-[100%] dark:bg-DarkCol':'top-[-490px] left-0 lg:opacity-100 opacity-0'}`}>
+            <ul className={`me-2 lg:flex lg:items-center lg:bg-transparent bg-white lg:pb-0 pb-12 absolute lg:static lg:z-auto z-[-1] w-full lg:w-[70%] xl:w-[60%] 2xl:w-[50%] lg:pl-0 pl-9 transition-all duration-500 ease-in ${menuOpen? 'top-0 left-0 pt-10 opacity-100 w-[100%] dark:bg-slate-700':'top-[-490px] left-0 lg:opacity-100 opacity-0'}`}>
             {/* <ul
               className={`me-2 lg:flex lg:items-center lg:bg-transparent bg-white lg:pb-0 pb-12 
               absolute lg:static lg:z-auto z-[-1] w-full lg:w-auto pl-9 transition-all 
@@ -89,7 +85,7 @@ const Navbar = ({Links}:NavbarProps) => {
                   <li key={link.name} className="lg:ml-4 text-[18px] lg:my-0 my-7 text-center ">
                     <Link
                       href={link.link}
-                      className="relative text-white hover:text-[#0a6b70] duration-500 w-full flex items-center justify-center min-w-[78px] dark:text-white
+                      className="relative text-slate-700 sm:text-white hover:text-[#0a6b70] duration-500 w-full flex items-center justify-center min-w-[78px] dark:text-white
                       after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-0 after:h-[2px] after:bg-[#0a6b70]
                       hover:after:w-full hover:after:left-0 after:transition-all after:duration-500 text-center"
                     >
@@ -107,18 +103,12 @@ const Navbar = ({Links}:NavbarProps) => {
                     <DarkModeSwitcher />
                   </span>
                   <div className="">
-                    {user.isAuthenticated? 
-                      (<span>
-                        <DropdownUser />
-                      </span>)
-                      :(
-                      <LoginButton mode="modal">  
-                        <div className="bg-[#098084] rounded-lg text-white fond-bold py-2 px-6 hover:bg-[#098084] dark:bg-white dark:text-black">
-                          Sign in
-                        </div>
-                      </LoginButton>
-                      )
-                    }
+                    {/* Site vitrine - pas de connexion nécessaire */}
+                    <Link href="/auth/login">
+                      <div className="bg-[#098084] rounded-lg text-white fond-bold py-2 px-6 hover:bg-[#098084] dark:bg-white dark:text-black cursor-pointer">
+                        Sign in
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -141,19 +131,12 @@ const Navbar = ({Links}:NavbarProps) => {
               </LoginButton> */}
 
             <div className="hidden md:block">
-              {user.isAuthenticated? 
-                (<span>
-                  <DropdownUser />
-                </span>)
-                :(
-                  // <button className="bg-Es_primary rounded-lg text-white fond-bold py-2 px-6 dark:bg-slate-500">Signin</button>
-                <LoginButton mode="modal">  
-                  <div className="bg-[#098084] rounded-lg text-white fond-bold py-2 px-6 hover:bg-[#098084] dark:bg-white dark:text-black">
-                    Sign in
-                  </div>
-                </LoginButton>
-                )
-              }
+              {/* Site vitrine - pas de connexion nécessaire */}
+              <Link href="/auth/login">
+                <div className="bg-[#098084] rounded-lg text-white fond-bold py-2 px-6 hover:bg-[#098084] dark:bg-white dark:text-black cursor-pointer">
+                  Sign in
+                </div>
+              </Link>
             </div>
           </div>
       

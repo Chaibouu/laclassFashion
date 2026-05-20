@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss"
 import appConfig from "./settings";
 import Configs from "./configs/Configs";
-const defaultTheme = require("tailwindcss/defaultTheme");
+import defaultTheme from "tailwindcss/defaultTheme";
 
 const config = {
   darkMode: ["class"],
@@ -100,6 +100,7 @@ const config = {
       },
       fontFamily: {
         satoshi: ["Satoshi", "sans-serif"],
+        fraunce : ["Fraunces", "serif"],
       },
       zIndex: {
         999999: "999999",

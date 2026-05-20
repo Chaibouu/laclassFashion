@@ -1,50 +1,93 @@
 'use server'
-import { makeAuthenticatedRequest } from "./makeAuthenticatedRequest";
 
+// Actions simplifiées pour les catégories - site vitrine sans authentification
 export const fetchCategory = async () => {
-    // la fonction makeAuthenticatedRequest va vous permettre de faire vos requête sans vous soucier de l'autorisation, il faut juste lui passer les paramètres de la requête et elle vous renvoie directement la 'data' souhaité
-    const test = await makeAuthenticatedRequest(
+  try {
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_APP_URL}/api/category`,
-      "GET"
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
     );
-  
-    // dans ce cas 'test' représente toutes les missions, vous pouvez ensuite envoyer la 'data' comme vous le souhaitez via le 'return'
-    return JSON.parse(JSON.stringify(test));
-  };
 
+    if (!response.ok) {
+      throw new Error("Erreur lors de la récupération des catégories");
+    }
 
-  export const postCategory = async (body:any) => {
-    // la fonction makeAuthenticatedRequest va vous permettre de faire vos requête sans vous soucier de l'autorisation, il faut juste lui passer les paramètres de la requête et elle vous renvoie directement la 'data' souhaité
-    const test = await makeAuthenticatedRequest(
+    const data = await response.json();
+    return JSON.parse(JSON.stringify(data.category || []));
+  } catch (error) {
+    console.error("Erreur dans fetchCategory:", error);
+    return [];
+  }
+};
+
+export const postCategory = async (body: any) => {
+  try {
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_APP_URL}/api/category`,
-      "POST",
-       body
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }
     );
-  
-    // dans ce cas 'test' représente toutes les missions, vous pouvez ensuite envoyer la 'data' comme vous le souhaitez via le 'return'
-    return JSON.parse(JSON.stringify(test));
-  };
 
-  export const putCategory = async (body:any) => {
-    // la fonction makeAuthenticatedRequest va vous permettre de faire vos requête sans vous soucier de l'autorisation, il faut juste lui passer les paramètres de la requête et elle vous renvoie directement la 'data' souhaité
-    const test = await makeAuthenticatedRequest(
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Erreur lors de la création de la catégorie");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur dans postCategory:", error);
+    throw error;
+  }
+};
+
+export const putCategory = async (body: any) => {
+  try {
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_APP_URL}/api/category/${body.id}`,
-      "PUT",
-       body.body
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body.body),
+      }
     );
-    // dans ce cas 'test' représente toutes les missions, vous pouvez ensuite envoyer la 'data' comme vous le souhaitez via le 'return'
-    return JSON.parse(JSON.stringify(test));
-  };
 
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Erreur lors de la mise à jour de la catégorie");
+    }
 
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur dans putCategory:", error);
+    throw error;
+  }
+};
 
-  export const deleteCategory = async (id:string) => {
-    // la fonction makeAuthenticatedRequest va vous permettre de faire vos requête sans vous soucier de l'autorisation, il faut juste lui passer les paramètres de la requête et elle vous renvoie directement la 'data' souhaité
-    const test = await makeAuthenticatedRequest(
+export const deleteCategory = async (id: string) => {
+  try {
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_APP_URL}/api/category/${id}`,
-      "DELETE",
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
     );
-  
-    // dans ce cas 'test' représente toutes les missions, vous pouvez ensuite envoyer la 'data' comme vous le souhaitez via le 'return'
-    return JSON.parse(JSON.stringify(test));
-  };
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Erreur lors de la suppression de la catégorie");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur dans deleteCategory:", error);
+    throw error;
+  }
+};
+

@@ -13,6 +13,9 @@ const appConfig = {
       user: process.env.MAIL_AUTH_USER,
       pass: process.env.MAIL_AUTH_PASSWORD,
     },
+    tls: {
+      rejectUnauthorized: false, // <== Ignorer les certificats auto-signés
+    },
   },
   publicRoutes: ["/"],
   defaultLoginRedirect: "/test",

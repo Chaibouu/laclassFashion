@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { UserButton } from "@/components/auth/user-button";
+// UserButton supprimé - site vitrine sans authentification
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -45,7 +45,7 @@ export const Navbar = () => {
           </Link>
         </Button>
       </div>
-      <UserButton />
+      {/* UserButton supprimé - site vitrine sans authentification */}
     </nav>
   );
 };
